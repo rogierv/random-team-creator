@@ -18,3 +18,12 @@
 - [ ] As a teacher I can send an email to each individual user in which team they are.
 - [ ] As a teacher I can randomly pick a name from a group
 - [ ] As a teacher I can ramdomly pick a selection of names from a group
+
+### Components
+
+- GroupSelectorContainer
+- GroupSelector
+- TeamCreatorContainer
+- TeamCreator
+- TeamSizeSelectorContainer
+- TeamSizeSelector
