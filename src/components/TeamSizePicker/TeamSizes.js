@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '@material-ui/core/Card';
 
 const createTeams = (members, size) => {
   return chunkArray(members, size);
@@ -36,12 +37,13 @@ const TeamSizes = ({ size, members }) => {
   return (
     <div>
       {teams.map((team, index) => (
-        <div key={index}>
+        <Card key={index}>
+          Team
           {index + 1}:{' '}
           {team.map(member => (
             <span key={member.id}>{member.name} </span>
           ))}
-        </div>
+        </Card>
       ))}
     </div>
   );
