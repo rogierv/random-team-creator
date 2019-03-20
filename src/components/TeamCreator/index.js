@@ -1,4 +1,5 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 import TeamCreator from './TeamCreator';
@@ -28,14 +29,20 @@ class TeamCreatorContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <TeamCreator
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
-          values={this.state}
-          groups={this.props.groups}
-          selectedGroupId={this.props.match.params.id}
-        />
-        <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
+        <Grid container direction="row" justify="center" alignItems="flex-start" spacing={16}>
+          <Grid item xs={4}>
+            <TeamCreator
+              onSubmit={this.onSubmit}
+              onChange={this.onChange}
+              values={this.state}
+              groups={this.props.groups}
+              selectedGroupId={this.props.match.params.id}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
+          </Grid>
+        </Grid>
       </React.Fragment>
     );
   }

@@ -10,6 +10,10 @@ class TeamSizePickerContainer extends React.Component {
     this.setState({ size });
   };
 
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     const { groups, selectedGroupId } = this.props;
     return (
@@ -18,6 +22,7 @@ class TeamSizePickerContainer extends React.Component {
         selectedGroupId={selectedGroupId}
         onClickHander={this.onClickHander}
         size={this.state.size}
+        handleChange={this.handleChange}
       />
     );
   }
