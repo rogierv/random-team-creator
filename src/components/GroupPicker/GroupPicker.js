@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default ({ onSubmit, onChange, values, groups }) => {
   const { groupName } = values;
@@ -7,7 +8,9 @@ export default ({ onSubmit, onChange, values, groups }) => {
     <React.Fragment>
       <h1>Group Picker</h1>
       {groups.map(group => (
-        <div key={group.id}>{group.name}</div>
+        <div key={group.id}>
+          <Link to={`/group/${group.id}`}>{group.name}</Link>
+        </div>
       ))}
       <form onSubmit={onSubmit}>
         <input
