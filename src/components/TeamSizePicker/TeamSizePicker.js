@@ -8,17 +8,18 @@ const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size }) => {
 
   const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length - 1;
 
-  const teamSizing = Array.from(Array(countMembers), (val, index) => index + 1);
+  const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (val, index) => index + 1);
 
   return (
     <div>
       Create number of teams:
-      {teamSizing.map(size => (
-        <span key={size} onClick={() => onClickHander(size)}>
-          {' '}
-          {size}{' '}
-        </span>
-      ))}
+      {countMembers > 0 &&
+        teamSizing.map(size => (
+          <span key={size} onClick={() => onClickHander(size)}>
+            {' '}
+            {size}{' '}
+          </span>
+        ))}
       {size && <TeamSizes size={size} members={members} />}
     </div>
   );
