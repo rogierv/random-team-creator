@@ -2,8 +2,8 @@
 
 ### User Stories
 
-- [ ] As a teacher I can create a new group and name it (i.e. "CODE 23")
-- [ ] As a teacher I can add names to a group
+- [x] As a teacher I can create a new group and name it (i.e. "CODE 23")
+- [x] As a teacher I can add names to a group
 - [ ] As a teacher I can create teams out of this group
 - [ ] As a teacher I can select the group size. The different group sizes are automatically presented
 - [ ] As a teacher I can randomly create teams based on the selected group size. I can always rerun.

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import TeamCreator from './TeamCreator';
+import TeamSizePickerContainer from '../TeamSizePicker';
 import { addMember } from '../../actions/member';
 import { getGroups } from '../../actions/group';
 
@@ -26,13 +27,16 @@ class TeamCreatorContainer extends React.Component {
 
   render() {
     return (
-      <TeamCreator
-        onSubmit={this.onSubmit}
-        onChange={this.onChange}
-        values={this.state}
-        groups={this.props.groups}
-        selectedGroupId={this.props.match.params.id}
-      />
+      <React.Fragment>
+        <TeamCreator
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.state}
+          groups={this.props.groups}
+          selectedGroupId={this.props.match.params.id}
+        />
+        <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
+      </React.Fragment>
     );
   }
 }
