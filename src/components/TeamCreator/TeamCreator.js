@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Divider } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -48,7 +49,7 @@ const TeamCreator = ({ onSubmit, onChange, values, groups, selectedGroupId, clas
       <Typography component="h5" variant="h5" gutterBottom>
         Group Members
       </Typography>
-
+      <Divider />
       <List dense={true}>
         {selectedGroup.length !== 0 &&
           selectedGroup[0].members.map(member => (

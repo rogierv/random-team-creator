@@ -1,12 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { Button, Chip, Grid, Link, Paper, TextField, Typography, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
 const styles = theme => ({
@@ -40,7 +33,7 @@ const GroupPicker = ({ onSubmit, onChange, values, groups, classes }) => {
   return (
     <div className={classes.root}>
       <Grid container direction="column" justify="center" alignItems="center" spacing={24}>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             <Typography component="h5" variant="h5" gutterBottom>
               Select a group

@@ -4,10 +4,15 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import TeamSizes from './TeamSizes';
+import { Divider, FormControl, MenuItem, Select, InputLabel } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     flexGrow: 1
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -30,32 +35,32 @@ const styles = theme => ({
   }
 });
 
-const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes }) => {
+const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes, handleChange }) => {
   const selectedGroup = groups.filter(group => group.id === selectedGroupId);
-
   const members = selectedGroup.length !== 0 && selectedGroup[0].members;
-
   const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length - 1;
-
-  const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (val, index) => index + 1);
+  const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
 
   return (
     <Paper className={classes.paper}>
       <Typography component="h5" variant="h5" gutterBottom>
-        Team Creation
+        Team Generator
       </Typography>
+      <Divider />
 
-      <div>
-        Create number of teams:
-        {countMembers > 0 &&
-          teamSizing.map(size => (
-            <span key={size} onClick={() => onClickHander(size)}>
-              {' '}
-              {size}{' '}
-            </span>
-          ))}
-        {size && <TeamSizes size={size} members={members} />}
-      </div>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="sizeSelector"># teams</InputLabel>
+        <Select value={size} onChange={handleChange} inputProps={{ name: 'size', id: 'sizeSelector' }}>
+          {countMembers > 0 &&
+            teamSizing.map(size => (
+              <MenuItem key={size} value={size}>
+                {size}
+              </MenuItem>
+            ))}
+        </Select>
+      </FormControl>
+
+      {size && <TeamSizes size={size} members={members} />}
     </Paper>
   );
 };
