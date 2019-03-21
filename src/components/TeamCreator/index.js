@@ -44,7 +44,7 @@ class TeamCreatorContainer extends React.Component {
               onDelete={this.onDelete}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
           </Grid>
         </Grid>
