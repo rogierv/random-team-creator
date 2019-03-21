@@ -27,7 +27,7 @@ const styles = theme => ({
   }
 });
 
-const GroupPicker = ({ onSubmit, onChange, values, groups, classes }) => {
+const GroupPicker = ({ onDelete, onSubmit, onChange, values, groups, classes }) => {
   const { groupName } = values;
 
   return (
@@ -41,9 +41,16 @@ const GroupPicker = ({ onSubmit, onChange, values, groups, classes }) => {
 
             {groups.map(group => (
               <Link component={RouterLink} key={group.id} to={`/group/${group.id}`}>
-                <Chip key={group.id} label={group.name} onDelete={this} color="primary" className={classes.chip} />
+                <Chip
+                  key={group.id}
+                  label={group.name}
+                  color="primary"
+                  className={classes.chip}
+                  onDelete={onDelete(group.id, group.members.length)}
+                />
               </Link>
             ))}
+
             <form onSubmit={onSubmit}>
               <TextField
                 value={groupName}

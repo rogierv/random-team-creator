@@ -1,11 +1,17 @@
 import uuid from 'uuid';
 
 export const ADD_GROUP = 'ADD_GROUP';
+export const DELETE_GROUP = 'DELETE_GROUP';
 export const GROUPS_FETCHED = 'GROUPS_FETCHED';
 
 const addGroupSuccess = (id, name) => ({
   type: ADD_GROUP,
   group: { id, name, members: [] }
+});
+
+const deleteGroupSuccess = id => ({
+  type: DELETE_GROUP,
+  id
 });
 
 const groupsFetched = groups => ({
@@ -19,6 +25,12 @@ export const addGroup = name => dispatch => {
   const groupsJSON = groups ? JSON.parse(groups) : [];
   localStorage.setItem('groups', JSON.stringify([...groupsJSON, { id, name, members: [] }]));
   dispatch(addGroupSuccess(id, name));
+};
+
+export const deleteGroup = id => dispatch => {
+  const groupsJSON = JSON.parse(localStorage.getItem('groups'));
+  localStorage.setItem('groups', JSON.stringify(groupsJSON.filter(group => group.id !== id)));
+  dispatch(deleteGroupSuccess(id));
 };
 
 export const getGroups = () => (dispatch, getState) => {

@@ -1,10 +1,12 @@
-import { ADD_GROUP, GROUPS_FETCHED } from '../actions/group';
+import { ADD_GROUP, DELETE_GROUP, GROUPS_FETCHED } from '../actions/group';
 import { ADD_MEMBER } from '../actions/member';
 
 export default (state = [], action = {}) => {
   switch (action.type) {
     case ADD_GROUP:
       return [...state, action.group];
+    case DELETE_GROUP:
+      return state.filter(group => group.id !== action.id);
     case GROUPS_FETCHED:
       return action.groups;
     case ADD_MEMBER:
