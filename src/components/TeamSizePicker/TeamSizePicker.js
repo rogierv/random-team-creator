@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import TeamSizes from './TeamSizes';
-import { Divider, FormControl, MenuItem, Select, InputLabel } from '@material-ui/core';
+import { Divider, FormControl, FormHelperText, MenuItem, Select, InputLabel } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -38,7 +38,7 @@ const styles = theme => ({
 const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes, handleChange }) => {
   const selectedGroup = groups.filter(group => group.id === selectedGroupId);
   const members = selectedGroup.length !== 0 && selectedGroup[0].members;
-  const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length - 1;
+  const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length;
   const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
 
   return (
@@ -49,15 +49,21 @@ const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes,
       <Divider />
 
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="sizeSelector"># teams</InputLabel>
+        <InputLabel htmlFor="sizeSelector">No. of teams</InputLabel>
         <Select value={size} onChange={handleChange} inputProps={{ name: 'size', id: 'sizeSelector' }}>
           {countMembers > 0 &&
-            teamSizing.map(size => (
-              <MenuItem key={size} value={size}>
-                {size}
-              </MenuItem>
-            ))}
+            teamSizing.map(
+              size =>
+                size > 1 &&
+                size < countMembers && (
+                  <MenuItem key={size} value={size}>
+                    {size}
+                    {countMembers % size === 0 && ` *`}
+                  </MenuItem>
+                )
+            )}
         </Select>
+        <FormHelperText>* = equal teams</FormHelperText>
       </FormControl>
 
       {size && <TeamSizes size={size} members={members} />}
