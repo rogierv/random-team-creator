@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Divider, List, ListItem, ListItemText } from '@material-ui/core';
 import shuffle from '../../utils/shuffle';
 import chunkArray from '../../utils/chunckArray';
+import _ from 'lodash';
 
 const styles = {
   card: {
@@ -26,8 +27,11 @@ const styles = {
   }
 };
 
-const TeamSizes = ({ size, members, classes }) => {
-  const teams = chunkArray(shuffle(members), size);
+const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
+  const noOfTeams = chunkArray(shuffle(members), teamCount);
+  const maxMembers = _.chunk(shuffle(members), maxSize);
+  const teams = teamCount ? noOfTeams : maxSize ? maxMembers : null;
+
   return (
     <Grid container direction="row" justify="center" alignItems="center" spacing={24}>
       {teams.map((team, index) => (

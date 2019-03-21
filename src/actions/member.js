@@ -17,7 +17,6 @@ export const addMember = (id, name) => dispatch => {
   const memberId = uuid();
   const groups = localStorage.getItem('groups');
   const groupsJSON = groups ? JSON.parse(groups) : [];
-
   const updatedGroup = groupsJSON.map(group => {
     if (group.id === id) {
       return {
@@ -39,9 +38,7 @@ export const addMember = (id, name) => dispatch => {
 };
 
 export const deleteMember = (id, memberId) => dispatch => {
-  console.log(id, memberId);
   const groupsJSON = JSON.parse(localStorage.getItem('groups'));
-
   const updatedGroup = groupsJSON.map(group => {
     if (group.id === id) {
       return {

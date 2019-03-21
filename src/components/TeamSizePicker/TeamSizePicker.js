@@ -35,7 +35,7 @@ const styles = theme => ({
   }
 });
 
-const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes, handleChange }) => {
+const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, handleChange }) => {
   const selectedGroup = groups.filter(group => group.id === selectedGroupId);
   const members = selectedGroup.length !== 0 && selectedGroup[0].members;
   const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length;
@@ -50,15 +50,15 @@ const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes,
 
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sizeSelector">No. of teams</InputLabel>
-        <Select value={size} onChange={handleChange} inputProps={{ name: 'size', id: 'sizeSelector' }}>
+        <Select value={teamCount} onChange={handleChange} inputProps={{ name: 'teamCount', id: 'sizeSelector' }}>
           {countMembers > 0 &&
             teamSizing.map(
-              size =>
-                size > 1 &&
-                size < countMembers && (
-                  <MenuItem key={size} value={size}>
-                    {size}
-                    {countMembers % size === 0 && ` *`}
+              teamCount =>
+                teamCount > 1 &&
+                teamCount < countMembers && (
+                  <MenuItem key={teamCount} value={teamCount}>
+                    {teamCount}
+                    {countMembers % teamCount === 0 && ` *`}
                   </MenuItem>
                 )
             )}
@@ -66,7 +66,25 @@ const TeamSizePicker = ({ groups, selectedGroupId, onClickHander, size, classes,
         <FormHelperText>* = equal teams</FormHelperText>
       </FormControl>
 
-      {size && <TeamSizes size={size} members={members} />}
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="maxSizeSelector">Max Size</InputLabel>
+        <Select value={maxSize} onChange={handleChange} inputProps={{ name: 'maxSize', id: 'maxSizeSelector' }}>
+          {countMembers > 0 &&
+            teamSizing.map(
+              maxSize =>
+                maxSize > 1 &&
+                maxSize < countMembers && (
+                  <MenuItem key={maxSize} value={maxSize}>
+                    {maxSize}
+                    {countMembers % maxSize === 0 && ` *`}
+                  </MenuItem>
+                )
+            )}
+        </Select>
+        <FormHelperText />
+      </FormControl>
+
+      {(teamCount || maxSize) && <TeamSizes teamCount={teamCount} members={members} maxSize={maxSize} />}
     </Paper>
   );
 };

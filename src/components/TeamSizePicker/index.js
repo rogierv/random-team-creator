@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import TeamSizePicker from './TeamSizePicker';
 
 class TeamSizePickerContainer extends React.Component {
-  state = { size: '' };
-
-  onClickHander = size => {
-    this.setState({ size });
-  };
+  state = { teamCount: '', maxSize: '' };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === 'teamCount') {
+      this.setState({ [e.target.name]: e.target.value, maxSize: '' });
+    } else if (e.target.name === 'maxSize') {
+      this.setState({ [e.target.name]: e.target.value, teamCount: '' });
+    }
   };
 
   render() {
@@ -20,8 +20,8 @@ class TeamSizePickerContainer extends React.Component {
       <TeamSizePicker
         groups={groups}
         selectedGroupId={selectedGroupId}
-        onClickHander={this.onClickHander}
-        size={this.state.size}
+        teamCount={this.state.teamCount}
+        maxSize={this.state.maxSize}
         handleChange={this.handleChange}
       />
     );
