@@ -41,8 +41,7 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
   const members = selectedGroup.length !== 0 && selectedGroup[0].members;
   const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length;
   const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
-  const splitCountMembers = Math.ceil(countMembers / 2);
-  const maxSizeSizing = countMembers > 0 && Array.from(Array(splitCountMembers), (_, index) => index + 1);
+  const maxSizeSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
 
   return (
     <Paper className={classes.paper}>
@@ -76,7 +75,8 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
             maxSizeSizing.map(
               maxSize =>
                 maxSize > 1 &&
-                maxSize < countMembers && (
+                maxSize <= countMembers / 2 &&
+                (countMembers % maxSize === 0 || countMembers % maxSize >= maxSize - 1) && (
                   <MenuItem key={maxSize} value={maxSize}>
                     {maxSize}
                     {countMembers % maxSize === 0 && ` *`}
