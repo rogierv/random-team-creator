@@ -40,6 +40,8 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
   const members = selectedGroup.length !== 0 && selectedGroup[0].members;
   const countMembers = selectedGroup.length !== 0 && selectedGroup[0].members.length;
   const teamSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
+  const splitCountMembers = Math.ceil(countMembers / 2);
+  const maxSizeSizing = countMembers > 0 && Array.from(Array(splitCountMembers), (_, index) => index + 1);
 
   return (
     <Paper className={classes.paper}>
@@ -70,7 +72,7 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
         <InputLabel htmlFor="maxSizeSelector">Max Size</InputLabel>
         <Select value={maxSize} onChange={handleChange} inputProps={{ name: 'maxSize', id: 'maxSizeSelector' }}>
           {countMembers > 0 &&
-            teamSizing.map(
+            maxSizeSizing.map(
               maxSize =>
                 maxSize > 1 &&
                 maxSize < countMembers && (

@@ -33,7 +33,7 @@ const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
   const teams = teamCount ? noOfTeams : maxSize ? maxMembers : null;
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center" spacing={24}>
+    <Grid container direction="row" justify="center" alignItems="flex-start" spacing={24}>
       {teams.map((team, index) => (
         <Card key={index} className={classes.card}>
           <CardContent>
