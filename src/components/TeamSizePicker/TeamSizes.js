@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Divider, List, ListItem, ListItemText } from '@material-ui/core';
 import shuffle from '../../utils/shuffle';
-import chunkArray from '../../utils/chunckArray';
-import _ from 'lodash';
+import { chunkByCount, chunkByMax } from '../../utils/chunckArray';
 
 const styles = {
   card: {
@@ -28,8 +27,8 @@ const styles = {
 };
 
 const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
-  const noOfTeams = chunkArray(shuffle(members), teamCount);
-  const maxMembers = _.chunk(shuffle(members), maxSize);
+  const noOfTeams = chunkByCount(shuffle(members), teamCount);
+  const maxMembers = chunkByMax(shuffle(members), maxSize);
   const teams = teamCount ? noOfTeams : maxSize ? maxMembers : null;
 
   return (
@@ -41,7 +40,7 @@ const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
               Team {index + 1}
             </Typography>
             <Divider />
-            <List dense={true}>
+            <List dense={false}>
               {team.map(member => (
                 <ListItem key={member.id}>
                   <ListItemText primary={member.name} />

@@ -40,7 +40,7 @@ const GroupPicker = ({ onDelete, onSubmit, onChange, values, groups, classes }) 
         <Grid item xs={4}>
           <Paper className={classes.paper}>
             <Typography component="h5" variant="h5" gutterBottom>
-              Select a group
+              {groups.length === 0 ? 'Create a group' : 'Select a group'}
             </Typography>
 
             {groups.map(group => (
