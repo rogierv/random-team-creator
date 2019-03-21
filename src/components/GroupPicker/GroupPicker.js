@@ -6,23 +6,27 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
+  form: {
+    marginTop: '1rem'
+  },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
+    backgroundColor: '#30e3ca',
     color: theme.palette.text.secondary
   },
   margin: {
     margin: theme.spacing.unit
   },
   chip: {
+    color: '#e4f9f5',
+    backgroundColor: '#11999e',
     margin: theme.spacing.unit
   },
   link: {
     textDecoration: 'none',
-
     '&:focus, &:hover, &:visited, &:link, &:active': {
-      textDecoration: 'none',
-      color: 'black'
+      textDecoration: 'none'
     }
   }
 });
@@ -50,20 +54,21 @@ const GroupPicker = ({ onDelete, onSubmit, onChange, values, groups, classes }) 
                 />
               </Link>
             ))}
-
-            <form onSubmit={onSubmit}>
-              <TextField
-                value={groupName}
-                onChange={onChange}
-                placeholder="Enter group name"
-                type="text"
-                name="groupName"
-                required
-              />
-              <Button size="small" variant="outlined" color="primary" type="submit" className={classes.margin}>
-                Add
-              </Button>
-            </form>
+            <div className={classes.form}>
+              <form onSubmit={onSubmit}>
+                <TextField
+                  value={groupName}
+                  onChange={onChange}
+                  placeholder="Enter group name"
+                  type="text"
+                  name="groupName"
+                  required
+                />
+                <Button size="small" type="submit" className={classes.margin}>
+                  Add
+                </Button>
+              </form>
+            </div>
           </Paper>
         </Grid>
       </Grid>

@@ -11,8 +11,8 @@ import _ from 'lodash';
 
 const styles = {
   card: {
-    margin: '1rem'
-    // minWidth: 275
+    margin: '1rem',
+    backgroundColor: '#e4f9f5'
   },
   bullet: {
     display: 'inline-block',

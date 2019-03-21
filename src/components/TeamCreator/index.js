@@ -34,7 +34,7 @@ class TeamCreatorContainer extends React.Component {
     return (
       <React.Fragment>
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={16}>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TeamCreator
               onSubmit={this.onSubmit}
               onChange={this.onChange}
@@ -44,7 +44,7 @@ class TeamCreatorContainer extends React.Component {
               onDelete={this.onDelete}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
           </Grid>
         </Grid>

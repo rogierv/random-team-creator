@@ -19,6 +19,7 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
+    backgroundColor: '#30e3ca',
     color: theme.palette.text.secondary
   },
   margin: {
@@ -47,7 +48,7 @@ const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGro
   return (
     <Paper className={classes.paper}>
       <Typography component="h5" variant="h5" gutterBottom>
-        Group Members
+        {selectedGroup.length !== 0 && selectedGroup[0].members.length} Group Members
       </Typography>
       <Divider />
       <List dense={true}>
@@ -71,8 +72,9 @@ const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGro
           type="text"
           name="groupMember"
           required
+          margin="dense"
         />
-        <Button size="small" variant="outlined" color="primary" type="submit" className={classes.margin}>
+        <Button size="small" type="submit" className={classes.margin}>
           Add
         </Button>
       </form>
