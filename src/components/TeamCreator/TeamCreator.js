@@ -63,7 +63,6 @@ const TeamCreator = ({ onSubmit, onChange, values, groups, selectedGroupId, clas
             </ListItem>
           ))}
       </List>
-
       <form onSubmit={onSubmit}>
         <TextField
           value={groupMember}

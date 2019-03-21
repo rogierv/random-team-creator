@@ -22,6 +22,10 @@ class TeamCreatorContainer extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  onDelete = id => {
+    console.log(id);
+  };
+
   componentDidMount() {
     this.props.getGroups();
   }
