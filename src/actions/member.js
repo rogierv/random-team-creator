@@ -40,5 +40,17 @@ export const addMember = (id, name) => dispatch => {
 
 export const deleteMember = (id, memberId) => dispatch => {
   console.log(id, memberId);
+  const groupsJSON = JSON.parse(localStorage.getItem('groups'));
+
+  const updatedGroup = groupsJSON.map(group => {
+    if (group.id === id) {
+      return {
+        ...group,
+        members: group.members.filter(member => member.id !== memberId)
+      };
+    }
+    return group;
+  });
+  localStorage.setItem('groups', JSON.stringify(updatedGroup));
   dispatch(deleteMemberSuccess(id, memberId));
 };
