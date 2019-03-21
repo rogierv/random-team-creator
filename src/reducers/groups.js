@@ -1,5 +1,5 @@
 import { ADD_GROUP, DELETE_GROUP, GROUPS_FETCHED } from '../actions/group';
-import { ADD_MEMBER } from '../actions/member';
+import { ADD_MEMBER, DELETE_MEMBER } from '../actions/member';
 
 export default (state = [], action = {}) => {
   switch (action.type) {
@@ -26,7 +26,17 @@ export default (state = [], action = {}) => {
         return group;
       });
       return updatedGroup;
-
+    case DELETE_MEMBER:
+      const updatedGroupDeleted = state.map(group => {
+        if (group.id === action.member.id) {
+          return {
+            ...group,
+            members: group.members.filter(member => member.id !== action.member.memberId)
+          };
+        }
+        return group;
+      });
+      return updatedGroupDeleted;
     default:
       return state;
   }

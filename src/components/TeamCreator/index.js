@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import TeamCreator from './TeamCreator';
 import TeamSizePickerContainer from '../TeamSizePicker';
-import { addMember } from '../../actions/member';
+import { addMember, deleteMember } from '../../actions/member';
 import { getGroups } from '../../actions/group';
 
 class TeamCreatorContainer extends React.Component {
@@ -22,8 +22,8 @@ class TeamCreatorContainer extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onDelete = id => {
-    console.log(id);
+  onDelete = (id, memberId) => () => {
+    this.props.deleteMember(id, memberId);
   };
 
   componentDidMount() {
@@ -41,6 +41,7 @@ class TeamCreatorContainer extends React.Component {
               values={this.state}
               groups={this.props.groups}
               selectedGroupId={this.props.match.params.id}
+              onDelete={this.onDelete}
             />
           </Grid>
           <Grid item xs={4}>
@@ -56,5 +57,5 @@ const mapStateToProps = state => ({ groups: state.groups });
 
 export default connect(
   mapStateToProps,
-  { addMember, getGroups }
+  { addMember, deleteMember, getGroups }
 )(TeamCreatorContainer);

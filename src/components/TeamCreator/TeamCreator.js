@@ -37,7 +37,7 @@ const styles = theme => ({
   }
 });
 
-const TeamCreator = ({ onSubmit, onChange, values, groups, selectedGroupId, classes }) => {
+const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGroupId, classes }) => {
   const { groupMember } = values;
 
   const selectedGroup = groups.filter(group => {
@@ -56,7 +56,7 @@ const TeamCreator = ({ onSubmit, onChange, values, groups, selectedGroupId, clas
             <ListItem key={member.id}>
               <ListItemText primary={`${member.name}`} />
               <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
+                <IconButton aria-label="Delete" onClick={onDelete(selectedGroup[0].id, member.id)}>
                   <DeleteIcon />
                 </IconButton>
               </ListItemSecondaryAction>
