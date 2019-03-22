@@ -19,6 +19,8 @@
 This individual project is to test my front-end skills in React/Redux in combination with local Storage and Material-UI. </br>
 The aim of this application is to generate random teams out of a group. A teacher can quickly create teams from different groups. The groups and team members are stored in the localStorage, so even after a refresh the data is still there.
 
+![](random-team-creator.gif)
+
 ## Technologies used
 
 The front-end was developed using `React`, `Redux` and `Material-UI`.<br />
