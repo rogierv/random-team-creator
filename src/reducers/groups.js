@@ -10,7 +10,7 @@ export default (state = [], action = {}) => {
     case GROUPS_FETCHED:
       return action.groups;
     case ADD_MEMBER:
-      const updatedGroup = state.map(group => {
+      return state.map(group => {
         if (group.id === action.member.id) {
           return {
             ...group,
@@ -25,9 +25,8 @@ export default (state = [], action = {}) => {
         }
         return group;
       });
-      return updatedGroup;
     case DELETE_MEMBER:
-      const updatedGroupDeleted = state.map(group => {
+      return state.map(group => {
         if (group.id === action.member.id) {
           return {
             ...group,
@@ -36,7 +35,6 @@ export default (state = [], action = {}) => {
         }
         return group;
       });
-      return updatedGroupDeleted;
     default:
       return state;
   }
