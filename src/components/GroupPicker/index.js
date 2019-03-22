@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import GroupPicker from './GroupPicker';
 import { addGroup, deleteGroup, getGroups } from '../../actions/group';
 
@@ -49,6 +49,13 @@ class GroupPickerContainer extends React.Component {
     );
   }
 }
+
+GroupPickerContainer.propTypes = {
+  getGroups: PropTypes.func.isRequired,
+  addGroup: PropTypes.func.isRequired,
+  deleteGroup: PropTypes.func.isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+};
 
 const mapStateToProps = state => ({ groups: state.groups });
 

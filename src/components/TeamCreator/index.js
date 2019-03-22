@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import TeamCreator from './TeamCreator';
 import TeamSizePickerContainer from '../TeamSizePicker';
@@ -16,8 +17,8 @@ class TeamCreatorContainer extends React.Component {
   }
 
   onSubmit = e => {
-    const { addMember, groupMember } = this.state;
-    const { match } = this.props;
+    const { addMember, match } = this.props;
+    const { groupMember } = this.state;
     const groupId = match.params.id;
     e.preventDefault();
     addMember(groupId, groupMember);
@@ -54,6 +55,14 @@ class TeamCreatorContainer extends React.Component {
     );
   }
 }
+
+TeamCreatorContainer.propTypes = {
+  getGroups: PropTypes.func.isRequired,
+  addMember: PropTypes.func.isRequired,
+  deleteMember: PropTypes.func.isRequired,
+  match: PropTypes.shape({}).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+};
 
 const mapStateToProps = state => ({ groups: state.groups });
 

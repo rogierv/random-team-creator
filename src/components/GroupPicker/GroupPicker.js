@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Chip, Grid, Link, Paper, TextField, Typography, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -74,6 +75,15 @@ const GroupPicker = ({ onDelete, onSubmit, onChange, values, groups, classes }) 
       </Grid>
     </div>
   );
+};
+
+GroupPicker.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  values: PropTypes.shape({}.isRequired).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  classes: PropTypes.shape({}.isRequired).isRequired
 };
 
 export default withStyles(styles)(GroupPicker);

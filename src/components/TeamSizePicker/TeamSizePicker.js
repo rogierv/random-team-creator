@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import {
   Divider,
   FormControl,
@@ -8,7 +8,8 @@ import {
   Select,
   InputLabel,
   Typography,
-  Paper
+  Paper,
+  withStyles
 } from '@material-ui/core';
 
 import TeamSizes from './TeamSizes';
@@ -93,6 +94,15 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
       {(teamCount || maxSize) && <TeamSizes teamCount={teamCount} members={members} maxSize={maxSize} />}
     </Paper>
   );
+};
+
+TeamSizePicker.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  teamCount: PropTypes.number.isRequired,
+  maxSize: PropTypes.number.isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  classes: PropTypes.shape({}.isRequired).isRequired,
+  selectedGroupId: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(TeamSizePicker);

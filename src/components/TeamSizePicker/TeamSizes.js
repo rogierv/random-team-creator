@@ -1,10 +1,16 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import {
+  Card,
+  CardContent,
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  withStyles
+} from '@material-ui/core';
 import shuffle from '../../utils/shuffle';
 import { chunkByCount, chunkByMax } from '../../utils/chunckArray';
 
@@ -34,6 +40,7 @@ const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
   return (
     <Grid container direction="row" justify="center" alignItems="flex-start" spacing={24}>
       {teams.map((team, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <Card key={index} className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -54,6 +61,13 @@ const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
       ))}
     </Grid>
   );
+};
+
+TeamSizes.propTypes = {
+  teamCount: PropTypes.number.isRequired,
+  maxSize: PropTypes.number.isRequired,
+  classes: PropTypes.shape({}.isRequired).isRequired,
+  members: PropTypes.arrayOf(PropTypes.shape({}.isRequired).isRequired).isRequired
 };
 
 export default withStyles(styles)(TeamSizes);
