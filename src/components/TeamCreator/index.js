@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import TeamCreator from './TeamCreator';
-import TeamSizePickerContainer from '../TeamSizePicker';
+import TeamMembersList from '../TeamMembersList';
+import TeamGenerator from '../TeamGenerator';
 import { addMember, deleteMember } from '../../actions/member';
 import { getGroups } from '../../actions/group';
 
@@ -39,7 +39,7 @@ class TeamCreatorContainer extends React.Component {
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={16}>
         <Grid item xs={3}>
-          <TeamCreator
+          <TeamMembersList
             onSubmit={this.onSubmit}
             onChange={this.onChange}
             values={this.state}
@@ -49,7 +49,7 @@ class TeamCreatorContainer extends React.Component {
           />
         </Grid>
         <Grid item xs={6}>
-          <TeamSizePickerContainer selectedGroupId={match.params.id} />
+          <TeamGenerator selectedGroupId={match.params.id} />
         </Grid>
       </Grid>
     );
