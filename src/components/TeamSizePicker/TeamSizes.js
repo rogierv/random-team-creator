@@ -37,7 +37,9 @@ const TeamSizes = ({ teamCount, members, classes, maxSize }) => {
         <Card key={index} className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Team {index + 1}
+              Team 
+              {' '}
+              {index + 1}
             </Typography>
             <Divider />
             <List dense={false}>

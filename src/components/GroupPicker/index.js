@@ -7,10 +7,16 @@ import { addGroup, deleteGroup, getGroups } from '../../actions/group';
 class GroupPickerContainer extends React.Component {
   state = { groupName: '' };
 
+  componentDidMount() {
+    const { getGroups } = this.props;
+    getGroups();
+  }
+
   onSubmit = e => {
     const { groupName } = this.state;
+    const { addGroup } = this.props;
     e.preventDefault();
-    this.props.addGroup(groupName);
+    addGroup(groupName);
     this.setState({ groupName: '' });
   };
 
@@ -19,27 +25,25 @@ class GroupPickerContainer extends React.Component {
   };
 
   onDelete = (id, count) => e => {
+    const { deleteGroup } = this.props;
     e.preventDefault();
     if (count > 0) {
       if (window.confirm(`Are you sure you want to delete this group with ${count} members`)) {
-        this.props.deleteGroup(id);
+        deleteGroup(id);
       }
     } else {
-      this.props.deleteGroup(id);
+      deleteGroup(id);
     }
   };
 
-  componentDidMount() {
-    this.props.getGroups();
-  }
-
   render() {
+    const { groups } = this.props;
     return (
       <GroupPicker
         onSubmit={this.onSubmit}
         onChange={this.onChange}
         values={this.state}
-        groups={this.props.groups}
+        groups={groups}
         onDelete={this.onDelete}
       />
     );

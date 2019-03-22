@@ -48,10 +48,12 @@ const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGro
   return (
     <Paper className={classes.paper}>
       <Typography component="h5" variant="h5" gutterBottom>
-        {selectedGroup.length !== 0 && selectedGroup[0].members.length} Group Members
+        {selectedGroup.length !== 0 && selectedGroup[0].members.length}
+        {' '}
+Group Members
       </Typography>
       <Divider />
-      <List dense={true}>
+      <List dense>
         {selectedGroup.length !== 0 &&
           selectedGroup[0].members.map(member => (
             <ListItem key={member.id}>

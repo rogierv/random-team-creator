@@ -1,10 +1,17 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  Divider,
+  FormControl,
+  FormHelperText,
+  MenuItem,
+  Select,
+  InputLabel,
+  Typography,
+  Paper
+} from '@material-ui/core';
 
 import TeamSizes from './TeamSizes';
-import { Divider, FormControl, FormHelperText, MenuItem, Select, InputLabel } from '@material-ui/core';
 
 const styles = theme => ({
   root: {

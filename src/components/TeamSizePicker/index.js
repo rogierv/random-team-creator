@@ -16,12 +16,13 @@ class TeamSizePickerContainer extends React.Component {
 
   render() {
     const { groups, selectedGroupId } = this.props;
+    const { teamCount, maxSize } = this.state;
     return (
       <TeamSizePicker
         groups={groups}
         selectedGroupId={selectedGroupId}
-        teamCount={this.state.teamCount}
-        maxSize={this.state.maxSize}
+        teamCount={teamCount}
+        maxSize={maxSize}
         handleChange={this.handleChange}
       />
     );
