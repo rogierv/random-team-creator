@@ -54,7 +54,7 @@ Please follow the links below to some samples:
 
 ## Use Online or Run Locally
 
-You can play the game online here: https://random-team-creator.netlify.com/
+You can use the application online at: https://random-team-creator.netlify.com/
 
 Alternatively you can clone the repo and run everything locally.<br />
 
