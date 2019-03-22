@@ -5,7 +5,7 @@ import TeamSizePicker from './TeamSizePicker';
 
 class TeamSizePickerContainer extends React.Component {
   // I have to set the maxSize to -1, to avoid showing '0' near the selecter. Who solves this in a clean way get a coffee!
-  state = { teamCount: 0, maxSize: -1 };
+  state = { teamCount: 0, maxSize: 0 };
 
   handleChange = e => {
     if (e.target.name === 'teamCount') {
