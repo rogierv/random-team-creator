@@ -52,47 +52,49 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
   const maxSizeSizing = countMembers > 0 && Array.from(Array(countMembers), (_, index) => index + 1);
 
   return (
-    <Paper className={classes.paper}>
-      <Typography component="h5" variant="h5" gutterBottom>
-        Team Generator
-      </Typography>
-      <Divider />
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="sizeSelector">No. of teams</InputLabel>
-        <Select value={teamCount} onChange={handleChange} inputProps={{ name: 'teamCount', id: 'sizeSelector' }}>
-          {countMembers > 0 &&
-            teamSizing.map(
-              teamCount =>
-                teamCount > 1 &&
-                teamCount < countMembers && (
-                  <MenuItem key={teamCount} value={teamCount}>
-                    {teamCount}
-                    {countMembers % teamCount === 0 && ` *`}
-                  </MenuItem>
-                )
-            )}
-        </Select>
-        <FormHelperText>* = equal teams</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="maxSizeSelector">Max Size</InputLabel>
-        <Select value={maxSize} onChange={handleChange} inputProps={{ name: 'maxSize', id: 'maxSizeSelector' }}>
-          {countMembers > 0 &&
-            maxSizeSizing.map(
-              maxSize =>
-                maxSize > 1 &&
-                maxSize <= Math.ceil(countMembers / 2) && (
-                  <MenuItem key={maxSize} value={maxSize}>
-                    {maxSize}
-                    {countMembers % maxSize === 0 && ` *`}
-                  </MenuItem>
-                )
-            )}
-        </Select>
-        <FormHelperText />
-      </FormControl>
-      {(teamCount || maxSize) && <TeamSizes teamCount={teamCount} members={members} maxSize={maxSize} />}
-    </Paper>
+    countMembers > 2 && (
+      <Paper className={classes.paper}>
+        <Typography component="h5" variant="h5" gutterBottom>
+          Team Generator
+        </Typography>
+        <Divider />
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="sizeSelector">No. of teams</InputLabel>
+          <Select value={teamCount} onChange={handleChange} inputProps={{ name: 'teamCount', id: 'sizeSelector' }}>
+            {countMembers > 0 &&
+              teamSizing.map(
+                teamCount =>
+                  teamCount > 1 &&
+                  teamCount < countMembers && (
+                    <MenuItem key={teamCount} value={teamCount}>
+                      {teamCount}
+                      {countMembers % teamCount === 0 && ` *`}
+                    </MenuItem>
+                  )
+              )}
+          </Select>
+          <FormHelperText>* = equal teams</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="maxSizeSelector">Max Size</InputLabel>
+          <Select value={maxSize} onChange={handleChange} inputProps={{ name: 'maxSize', id: 'maxSizeSelector' }}>
+            {countMembers > 0 &&
+              maxSizeSizing.map(
+                maxSize =>
+                  maxSize > 1 &&
+                  maxSize <= Math.ceil(countMembers / 2) && (
+                    <MenuItem key={maxSize} value={maxSize}>
+                      {maxSize}
+                      {countMembers % maxSize === 0 && ` *`}
+                    </MenuItem>
+                  )
+              )}
+          </Select>
+          <FormHelperText />
+        </FormControl>
+        {(teamCount !== 0 || maxSize !== 0) && <TeamSizes teamCount={teamCount} members={members} maxSize={maxSize} />}
+      </Paper>
+    )
   );
 };
 
