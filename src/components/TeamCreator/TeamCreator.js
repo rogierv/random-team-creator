@@ -1,16 +1,19 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
+import {
+  Button,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  Paper,
+  TextField,
+  Typography,
+  withStyles
+} from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -48,10 +51,12 @@ const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGro
   return (
     <Paper className={classes.paper}>
       <Typography component="h5" variant="h5" gutterBottom>
-        {selectedGroup.length !== 0 && selectedGroup[0].members.length} Group Members
+        {selectedGroup.length !== 0 && selectedGroup[0].members.length}
+        {' '}
+Group Members
       </Typography>
       <Divider />
-      <List dense={true}>
+      <List dense>
         {selectedGroup.length !== 0 &&
           selectedGroup[0].members.map(member => (
             <ListItem key={member.id}>
@@ -80,6 +85,16 @@ const TeamCreator = ({ onDelete, onSubmit, onChange, values, groups, selectedGro
       </form>
     </Paper>
   );
+};
+
+TeamCreator.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  values: PropTypes.shape({}.isRequired).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  classes: PropTypes.shape({}.isRequired).isRequired,
+  selectedGroupId: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(TeamCreator);

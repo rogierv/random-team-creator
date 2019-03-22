@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import TeamCreator from './TeamCreator';
 import TeamSizePickerContainer from '../TeamSizePicker';
@@ -10,11 +11,17 @@ import { getGroups } from '../../actions/group';
 class TeamCreatorContainer extends React.Component {
   state = { groupMember: '' };
 
+  componentDidMount() {
+    const { getGroups } = this.props;
+    getGroups();
+  }
+
   onSubmit = e => {
+    const { addMember, match } = this.props;
     const { groupMember } = this.state;
-    const groupId = this.props.match.params.id;
+    const groupId = match.params.id;
     e.preventDefault();
-    this.props.addMember(groupId, groupMember);
+    addMember(groupId, groupMember);
     this.setState({ groupMember: '' });
   };
 
@@ -23,14 +30,12 @@ class TeamCreatorContainer extends React.Component {
   };
 
   onDelete = (id, memberId) => () => {
-    this.props.deleteMember(id, memberId);
+    const { deleteMember } = this.props;
+    deleteMember(id, memberId);
   };
 
-  componentDidMount() {
-    this.props.getGroups();
-  }
-
   render() {
+    const { groups, match } = this.props;
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={16}>
         <Grid item xs={3}>
@@ -38,18 +43,26 @@ class TeamCreatorContainer extends React.Component {
             onSubmit={this.onSubmit}
             onChange={this.onChange}
             values={this.state}
-            groups={this.props.groups}
-            selectedGroupId={this.props.match.params.id}
+            groups={groups}
+            selectedGroupId={match.params.id}
             onDelete={this.onDelete}
           />
         </Grid>
         <Grid item xs={6}>
-          <TeamSizePickerContainer selectedGroupId={this.props.match.params.id} />
+          <TeamSizePickerContainer selectedGroupId={match.params.id} />
         </Grid>
       </Grid>
     );
   }
 }
+
+TeamCreatorContainer.propTypes = {
+  getGroups: PropTypes.func.isRequired,
+  addMember: PropTypes.func.isRequired,
+  deleteMember: PropTypes.func.isRequired,
+  match: PropTypes.shape({}).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+};
 
 const mapStateToProps = state => ({ groups: state.groups });
 

@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react-app/recommended"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js", ".jsx"]
+    }]
+  }
+}

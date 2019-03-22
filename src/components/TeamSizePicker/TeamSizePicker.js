@@ -1,10 +1,18 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import {
+  Divider,
+  FormControl,
+  FormHelperText,
+  MenuItem,
+  Select,
+  InputLabel,
+  Typography,
+  Paper,
+  withStyles
+} from '@material-ui/core';
 
 import TeamSizes from './TeamSizes';
-import { Divider, FormControl, FormHelperText, MenuItem, Select, InputLabel } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -86,6 +94,15 @@ const TeamSizePicker = ({ groups, selectedGroupId, teamCount, maxSize, classes, 
       {(teamCount || maxSize) && <TeamSizes teamCount={teamCount} members={members} maxSize={maxSize} />}
     </Paper>
   );
+};
+
+TeamSizePicker.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  teamCount: PropTypes.number.isRequired,
+  maxSize: PropTypes.number.isRequired,
+  groups: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  classes: PropTypes.shape({}.isRequired).isRequired,
+  selectedGroupId: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(TeamSizePicker);
